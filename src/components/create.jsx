@@ -11,8 +11,10 @@ export default function Create () {
         description: "",
         file: "",
     });
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
+
 
     const url = "http://localhost:8080/api/image/create";
     const createImage = (newImage) => axios.post(url, newImage);
@@ -21,12 +23,17 @@ export default function Create () {
         try {
           await createImage(image);
           
-        } catch (error) {
+        } catch (setError) {
           console.log(error.message);
+          return alert("Invalid Form, Please Try Again");
         }
       };
 
       const handleSubmit = () => {
+        if (image.file === "" || image.file === null) {
+          return alert("Please Upload an Image");
+          
+        }
         createImg(image);
         navigate('/');
       };
@@ -55,6 +62,7 @@ export default function Create () {
           <FileBase64 
           type="file"
           multiple={false}
+          required={true}
           onDone={({ base64 }) => setImage({ ...image, file: base64 })}
           />
           <button className='btn'>Submit</button>

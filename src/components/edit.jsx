@@ -66,10 +66,11 @@ const Edit = () => {
                 <p className='m-4'>
                 <label for="name" className='text-red-700'>Choose a name:</label>
                     <select name="name" id="name" onChange={(e) => { setName(e.target.value) }}>
-                    <option value="">--Please choose an option--</option>
+                    <option value={name}>{name}</option>
                     <option value="Grammer">Grammer</option>
                     <option value="Bhakta">Bhakta</option>
                     <option value="Hooks">Hooks</option>
+                    
                     </select>
                 </p>
                 <p className='flex flex-col w-1/3'>
